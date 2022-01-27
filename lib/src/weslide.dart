@@ -148,6 +148,8 @@ class WeSlide extends StatefulWidget {
   /// This is the value that sets the duration of the animation.
   /// By default is 300 milliseconds
   final Duration animateDuration;
+ 
+  final bool extendsBodyBehind;
 
   /// This object used to control animations, using methods like hide or show
   /// to display panel or check if is visible with variable [isOpened]
@@ -190,6 +192,7 @@ class WeSlide extends StatefulWidget {
     List<TweenSequenceItem<double>>? fadeSequence,
     this.animateDuration = const Duration(milliseconds: 300),
     this.controller,
+    this.extendsBodyBehind = false,
   })  : /*assert(body != null, 'body could not be null'),*/
         assert(panelMinSize >= 0.0, 'panelMinSize cannot be negative'),
         assert(footerHeight >= 0.0, 'footerHeight cannot be negative'),
@@ -423,7 +426,9 @@ class _WeSlideState extends State<WeSlide> with SingleTickerProviderStateMixin {
               );
             },
             child: Container(
-              height: _height - _getBodyHeight(),
+              height: height: widget.extendsBodyBehind
+                  ? _height
+                  : _height - _getBodyHeight(),
               width: widget.bodyWidth ?? _width,
               child: widget.body,
             ),
