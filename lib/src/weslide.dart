@@ -426,7 +426,7 @@ class _WeSlideState extends State<WeSlide> with SingleTickerProviderStateMixin {
               );
             },
             child: Container(
-              height: height: widget.extendsBodyBehind
+              height: widget.extendsBodyBehind
                   ? _height
                   : _height - _getBodyHeight(),
               width: widget.bodyWidth ?? _width,
